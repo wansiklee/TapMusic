@@ -10,11 +10,23 @@ const colors = [
     "#60b2d3"
 ];
 
+function createBubbles(index){
+    const bubble = document.createElement("div");
+    visual.appendChild(bubble);
+    bubble.style.background = colors[index];
+    bubble.style.animation = "jump 1s ease";
+    bubble.addEventListener("animationend", function(){
+        visual.removeChild(this);
+    });
+}
+
 function init(){
     pads.forEach(function (pad, index){
         pad.addEventListener("click", function(){
             sounds[index].currentTime = 0;
             sounds[index].play();
+
+            createBubbles(index);
         });
     });
 }
